@@ -31,7 +31,7 @@ public class Controller{
         productRepository.deleteById(id);
     }
 
-    @GetMapping("/save")
+    @PostMapping("/save")
     public void saveProduct(@RequestBody Product product) {
         productRepository.save(product);
     }
