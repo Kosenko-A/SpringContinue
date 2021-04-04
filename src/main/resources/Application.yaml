@@ -1,0 +1,11 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-products
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/liquibase-changeLog.xml
