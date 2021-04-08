@@ -1,5 +1,6 @@
 package ru.geekbrains.SpringContinue.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +20,11 @@ public class Product {
     private Long id;
 
     @Column(name = "name", length = 128)
+    @ApiModelProperty(value = "Название товара", required = true)
     private String title;
 
     @Column(name = "price")
+    @ApiModelProperty(value = "Цена товара", required = true)
     private int price;
 
 

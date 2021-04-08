@@ -1,8 +1,18 @@
 package ru.geekbrains.SpringContinue.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class ProductDto {
 
+    @NotBlank
+    @ApiModelProperty(value = "Название товара", required = true)
     private String title;
+
+    @NotNull
+    @ApiModelProperty(value = "Цена товара", required = true)
     private int price;
 
     public ProductDto() {

@@ -1,11 +1,15 @@
 package ru.geekbrains.SpringContinue.controller;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.SpringContinue.dto.ProductDto;
 import ru.geekbrains.SpringContinue.entity.Product;
+import ru.geekbrains.SpringContinue.exceptions.ProductNotFoundException;
+import ru.geekbrains.SpringContinue.mapper.ProductDtoMapper;
 import ru.geekbrains.SpringContinue.repository.ProductRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -17,35 +21,44 @@ public class ControllerRest {
     ProductRepository productRepository;
 
     @GetMapping
+    @ApiOperation("Вывести список товаров")
     public List<Product> getProduct() {
         return productRepository.findAll();
     }
 
     @GetMapping("{id}")
+    @ApiOperation("Вывести товар по id")
     public Product getProduct(@PathVariable Long id) {
-        return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("" +
+                String.format("Не найден товар с идентификатром %s", id)));
     }
 
     @PostMapping
+    @ApiOperation("Сохранить товар")
     public void saveProduct(@RequestBody Product product) {
         productRepository.save(product);
     }
 
     @PutMapping
+    @ApiOperation("Обновить информацию о товаре")
     public void updateProduct(@RequestBody Product product) {
         productRepository.save(product);
     }
 
     @DeleteMapping("{id}")
+    @ApiOperation("Удалить товар по id")
     public void deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id);
     }
 
-    @PostMapping
-    public Product saveProduct(@RequestBody ProductDto productDto) {
-        Product product = new Product();
+    @PostMapping("post")
+    @ApiOperation("Сохранить товар")
+    public Product saveProduct(@RequestBody @Valid ProductDto productDto) {
+       /* Product product = new Product();
         product.setTitle(productDto.getTitle());
-        product.setPrice(productDto.getPrice());
+        product.setPrice(productDto.getPrice());*/
+
+        Product product = ProductDtoMapper.MAPPER.toProduct(productDto);
         productRepository.save(product);
         return product;
     }
