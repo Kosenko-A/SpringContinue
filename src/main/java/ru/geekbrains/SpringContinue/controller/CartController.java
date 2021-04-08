@@ -19,7 +19,7 @@ public class CartController {
 
     @PostMapping("{id}")
     @ApiOperation("Добавить товар в корзину")
-    public String addProductInCart(Long id) {
+    public String addProductInCart(@PathVariable Long id) {
         cart.put(id);
         return "redirect:/";
     }
