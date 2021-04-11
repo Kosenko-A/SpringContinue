@@ -1,5 +1,6 @@
 package ru.geekbrains.SpringContinue.controller;
 
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class CartController {
 
     @Autowired
-    Cart cart = new Cart();
+    Cart cart;
 
     @PostMapping("{id}")
     @ApiOperation("Добавить товар в корзину")
@@ -28,6 +29,13 @@ public class CartController {
     @ApiOperation("Просмотр товаров в корзине")
     public ArrayList<Optional<Product>> showCart() {
        return cart.get();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ApiModelProperty("Удалить товар из корзины")
+    public String deleteFromCart(@PathVariable Long id) {
+        cart.delete(id);
+        return "redirect:/";
     }
 
 }

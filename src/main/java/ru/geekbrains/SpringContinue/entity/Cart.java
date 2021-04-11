@@ -25,4 +25,8 @@ public class Cart {
         ArrayList<Optional<Product>> names = new ArrayList<>(cart.values());
         return names;
     }
+
+    public void delete(Long id) {
+        cart.remove(id);
+    }
 }
