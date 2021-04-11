@@ -48,4 +48,33 @@
             ('coffee', 300);
         </sql>
     </changeSet>
+
+    <changeSet id="add_column_21" author="kosenko">
+        <addColumn tableName="person">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_product" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_column_222" author="kosenko">
+        <addColumn tableName="person">
+            <column name="first_name" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_column_233" author="kosenko">
+        <addColumn tableName="person">
+            <column name="last_name" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="insert_22" author="kosenko">
+        <sql>
+            INSERT INTO person (first_name, last_name) VALUES
+            ('Jane', 'Smith'),
+            ('George', 'Moody'),
+            ('Bella', 'Black'),
+            ('Fred', 'Hanks'),
+            ('Tomas', 'Edison'),
+            ('Elizabet', 'Stonem');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

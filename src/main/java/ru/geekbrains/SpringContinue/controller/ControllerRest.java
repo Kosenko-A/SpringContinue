@@ -4,9 +4,11 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.SpringContinue.dto.ProductDto;
+import ru.geekbrains.SpringContinue.entity.Person;
 import ru.geekbrains.SpringContinue.entity.Product;
 import ru.geekbrains.SpringContinue.exceptions.ProductNotFoundException;
 import ru.geekbrains.SpringContinue.mapper.ProductDtoMapper;
+import ru.geekbrains.SpringContinue.repository.PersonRepository;
 import ru.geekbrains.SpringContinue.repository.ProductRepository;
 
 import javax.validation.Valid;
@@ -19,6 +21,9 @@ public class ControllerRest {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    PersonRepository personRepository;
 
     @GetMapping
     @ApiOperation("Вывести список товаров")
