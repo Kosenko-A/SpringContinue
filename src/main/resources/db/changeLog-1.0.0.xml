@@ -77,4 +77,24 @@
             ('Elizabet', 'Stonem');
         </sql>
     </changeSet>
+    <changeSet id="add_table_role" author="kosenko">
+        <createTable tableName="role">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="change_person_for_security" author="kosenko">
+        <addColumn tableName="person">
+            <column name="role_id" type="UUID">
+                <constraints foreignKeyName="fk_role" references="role(id)"/>
+            </column>
+            <column name="login" type="varchar(64)"/>
+            <column name="password" type="varchar(64)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

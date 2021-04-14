@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add_Person</title>
+</head>
+<body>
+<form action="#" th:action= "@{/addPerson}" th:object= "${person}" method="post">
+    <label for="first_name">First name</label>
+    <input type="text" th:field = "*{first_name}" id = "first_name" placeholder="first name">
+    <label for="last_name">Last name</label>
+    <input type="text" th:field = "*{last_name}" id = "last_name" placeholder="last name">
+    <select th:field = "*{role}" id = "role">
+        <option>SUPERADMIN</option>
+        <option>MANAGER</option>
+        <option>ADMIN</option>
+    </select>
+    <input type="submit" value="Add person">
+</form>
+</body>
+</html>

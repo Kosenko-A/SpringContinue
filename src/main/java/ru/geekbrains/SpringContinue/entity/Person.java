@@ -23,6 +23,11 @@ public class Person {
     @ApiModelProperty(value = "Фамилия", required = true)
     private String last_name;
 
+    @ManyToOne
+    private Role role;
+    private String login;
+    private String password;
+
     public Person() {
         UUID.randomUUID();
     }
@@ -52,5 +57,29 @@ public class Person {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
