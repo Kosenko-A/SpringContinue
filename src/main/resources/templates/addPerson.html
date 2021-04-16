@@ -10,11 +10,8 @@
     <input type="text" th:field = "*{first_name}" id = "first_name" placeholder="first name">
     <label for="last_name">Last name</label>
     <input type="text" th:field = "*{last_name}" id = "last_name" placeholder="last name">
-    <select th:field = "*{role}" id = "role">
-        <option>SUPERADMIN</option>
-        <option>MANAGER</option>
-        <option>ADMIN</option>
-    </select>
+    <label for="role">Role</label>
+    <input type="text" th:field = "*{role}" id = "role" placeholder="role">
     <input type="submit" value="Add person">
 </form>
 </body>

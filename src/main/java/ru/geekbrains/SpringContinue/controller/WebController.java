@@ -30,7 +30,7 @@ public class WebController {
     @GetMapping("/indexPersons")
     public String indexPersons(Model model) {
         List<Person> personList = personRepository.findAll();
-        model.addAttribute("persons", personRepository);
+        model.addAttribute("persons", personList);
         return "indexPersons";
     }
 
