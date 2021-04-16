@@ -1,0 +1,100 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="add_column_1" author="kosenko">
+        <addColumn tableName="product">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_product" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_column_2" author="kosenko">
+        <addColumn tableName="product">
+            <column name="name" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_column_3" author="kosenko">
+        <addColumn tableName="product">
+            <column name="price" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="insert_11" author="kosenko">
+        <sql>
+            INSERT INTO product (name, price) VALUES
+            ('orange', 80),
+            ('apple', 60),
+            ('pork', 400),
+            ('chicken', 200),
+            ('eggs', 50),
+            ('turkey', 350),
+            ('onion', 60),
+            ('cucumber', 50),
+            ('tomato', 45),
+            ('blueberry', 80),
+            ('chocolate', 200),
+            ('sweets', 150),
+            ('rabbit', 300),
+            ('kiwi', 500),
+            ('oil', 400),
+            ('cream', 200),
+            ('water', 90),
+            ('vine', 1000),
+            ('tea', 120),
+            ('coffee', 300);
+        </sql>
+    </changeSet>
+
+    <changeSet id="add_column_21" author="kosenko">
+        <addColumn tableName="person">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_product" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_column_222" author="kosenko">
+        <addColumn tableName="person">
+            <column name="first_name" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_column_233" author="kosenko">
+        <addColumn tableName="person">
+            <column name="last_name" type="text"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="insert_22" author="kosenko">
+        <sql>
+            INSERT INTO person (first_name, last_name) VALUES
+            ('Jane', 'Smith'),
+            ('George', 'Moody'),
+            ('Bella', 'Black'),
+            ('Fred', 'Hanks'),
+            ('Tomas', 'Edison'),
+            ('Elizabet', 'Stonem');
+        </sql>
+    </changeSet>
+    <changeSet id="add_table_role" author="kosenko">
+        <createTable tableName="role">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="change_person_for_security" author="kosenko">
+        <addColumn tableName="person">
+            <column name="role_id" type="UUID">
+                <constraints foreignKeyName="fk_role" references="role(id)"/>
+            </column>
+            <column name="login" type="varchar(64)"/>
+            <column name="password" type="varchar(64)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
